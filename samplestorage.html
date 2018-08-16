@@ -1,0 +1,130 @@
+<html>
+<head>
+  <title>Sample Storage Check In/Out</title>
+  <script type="text/javascript" src="/javascript/resourcejquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="/javascript/resourcejquery-ui.min.js"></script>
+  <script type="text/javascript" src="/javascript/custodyjavascript.js"></script>
+  <style>
+    input[type="button"][name="button_logout"]{font-size:17px;}
+    input[type="text"][name="coldlocation"]{font-size:18px;font-weight:bold}
+  </style>
+</head>
+
+<body>
+  <h2><img src="\pictures\puritylabs2.jpg">&nbsp;&nbsp;
+  Test Sample Internal Chain of Custody Form
+  </h2>
+  <h3>Welcome <span id="loginstaff"></span>&emsp;
+  <input type="button" name="button_logout" value="Log out" onClick="logout()"><span>&emsp;Check In/Out Samples Here</span></h3>
+  <script type="text/javascript">welcome();</script>
+  <div name="div1" id="sample_receiving">
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;<b><u>Sample Receiving</u></b></p>
+
+      <p name="p1">
+      <form name="form_entercasetofindsample" method="POST">
+        <label>Date:</label><input type="text" id="received_date" style="width:80px">&emsp;
+        <label>Case Number:</label><input type="text" id="casenumber" style="width:180px">&emsp;
+        <input type="button" name="button_findsample" value="Find Sample" onClick="findsample();">&emsp;<span id="findsample_notice"></span>
+        <label>Initials:</label><input type="text" id="staff_initial" style="width:60px">
+      </form>
+      </p>
+      <p name="p2">
+        <label>Customer:</label><input type="text" id="customer">&emsp;&emsp;
+        <label>Multiple Sample Per Case?</label>
+        <input type="radio" name="multi_sample" id="yes" value="yes">Yes
+        <input type="radio" name="multi_sample" id="no" value="no">No
+      </p>
+      <p name="p3"><label>Description:</label><input type="text" id="sample_description" style="width:360px">&emsp;<label>Lot Number:</label><input type="text" id="lotnumber" style="width:160px"></p>
+      <p name="p4">
+        <label>Sample Delivery Method:</label>
+        <input type="radio" name="deliverymethod" id='Walkin_Courier' value="Walkin_Courier">Walk-in/Courier&emsp;
+        <input type="radio" name="deliverymethod" id='Dropbox' value="Dropbox">Drop-Box&emsp;
+        <input type="radio" name="deliverymethod" id='UPS' value="UPS">UPS&emsp;
+        <input type="radio" name="deliverymethod" id='FedEx' value="FedEx">FedEx&emsp;
+        <input type="radio" name="deliverymethod" id='USPS' value="USPS">USPS
+      </p>
+      <p name=p5>
+        <label>Sample Condition:</label>
+        <input type="radio" name="received_condition" id='Acceptable' value="Acceptable">Acceptable&emsp;
+        <input type="radio" name="received_condition" id='Broken' value="Broken">Broken&emsp;
+        <input type="radio" name="received_condition" id='Leaking' value="Leaking">Leaking
+      </p>
+      <p name="p6">
+        <label>Storage Condition:</label>
+        <input type="radio" name="storagecondition" id='Ambient' value="Ambient">Ambient&emsp;
+        <input type="radio" name="storagecondition" id='Frozen' value="Frozen">Frozen&emsp;
+        <input type="radio" name="storagecondition" id='Cold' value="Cold">Cold&emsp;
+        <input type="radio" name="storagecondition" id='Other' value="Other">Other:
+        <input type="text" name="storageconditionother" value="None">
+      </p>
+      <p name="p7"><label>Sample Notes:</label><input type="text" id="notes" value="None"></p>
+      <p name="p8">
+        <label>Special Instances*:</label>
+        <input type="checkbox" name="specialinstance" id='Potability' value="potability">Potability&emsp;
+        <input type="checkbox" name="specialinstance" id='Shelflife' value="shelflife">Shelf Life/Stability&emsp;
+        <input type="checkbox" name="specialinstance" id='Swab' value="swabs">Swabs/Sponges&emsp;
+        <input type="checkbox" name="specialinstance" id='NWpet' value="nwpet">NW Pet&emsp;
+        <input type="checkbox" name="specialinstance" id='Wastewater' value="wastewater">Waste Water&emsp;
+        <p>*- For these special instances, the department personnel are responsible for sample control and disposal.</p>
+      </p>
+      <p name="p9">
+        <label>Departments for testings:</label>
+        <input type="checkbox" name="testdepartment" id='t_microbiology' value="microbiology">Microbiology
+        <input type="checkbox" name="testdepartment" id='t_chemistry' value="chemistry">Chemistry
+        <input type="checkbox" name="testdepartment" id='t_metals' value="metals">Metals
+        <input type="checkbox" name="testdepartment" id='t_labelclaim' value="labelclaim">Label Claim
+        <input type="checkbox" name="testdepartment" id='t_allergens' value="allergens">Allergens
+        <input type="checkbox" name="testdepartment" id='t_pesticides' value="pesticides">Pesticides
+      </p>
+      <p name="p10">
+        Test samples delivered to:
+        <input type="checkbox" name="deliveredto" id='d_microbiology' value="microbiology">Microbiology
+        <input type="checkbox" name="deliveredto" id='d_chemistry' value="chemistry">Chemistry
+        <input type="checkbox" name="deliveredto" id='d_metals' value="metals">Metals
+        <input type="checkbox" name="deliveredto" id='d_labelclaim' value="labelclaim">Label Claim
+        <input type="checkbox" name="deliveredto" id='d_allergens' value="allergens">Allergens
+        <input type="checkbox" name="deliveredto" id='d_pesticides' value="pesticides">Pesticides
+        <input type="checkbox" name="deliveredto" id='d_storage' value="storage">Storage
+        <input type="checkbox" name="deliveredto" id='d_other' value="other">Other:
+        <input type="text" name="deliveredtoother" value="None">
+      </p>
+  </div>
+
+  <hr style="height:6px;border:none;color:#333;background-color:#333;" />
+  <div name="div2" id="samle_storage_dispersion" style="font-size:18px;">
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;<b><u>Sample Storage and Dispersion</u></b></p>
+    <p name="p_storagelocation">
+      <label>Storage Location:</label>
+      <input type="radio" id="storageambient" value="ambient" />Ambient;
+      <label>Location: </label><input type="text" style="width:48px" id="ambientlocation" value="" />
+      <input type="radio" id="storagecold" value="cold" />Cold;
+      <label>Location: </label><input type="text" style="width:48px" id="coldlocation" value="" style="font-size:16px;font-weight:bold;"/>
+      <label>Initial: </label><input type="text" style="width:48px" id="storagelocationinitial" value=""/>
+    </p>
+    <p style="font-size:15px">
+      <b>Note: </b>Test sample(s) must be returned to the Storage Location upon return.
+    </p>
+    <p name="p_checkinout">
+      <form id="form_checkinout" name="form_checkinout">
+        <input type="button" name="button_checkin" value="Check In" onClick="checkin();" style="font-size:15px;width:100px;height:25px;">
+        <input type="button" name="button_checkout" value="Check Out" onClick="checkout();" style="font-size:15px;width:100;height:25px;">
+        <input type="button" name="button_dispose" value="Dispose" onclick="" style="font-size:15px;width:100;height:25px;">
+        <span id="checkinmsg"></span>
+        <span id="checkoutmsg"></span>
+      </form>
+    </p>
+    <p name="p_table">
+      <span id="checkouttable"></span>
+      <span id="checkintable"></span>
+      <script type="text/javascript">getcheckinouttable();</script>
+    </p>
+    <div id="checkinouthistory"><script type="text/javascript">displaytable();</script></div>
+  </div>
+
+  <hr style="height:6px;border:none;color:#333;background-color:#333;" />
+  <div id="sample_disposition"></div>
+  <div id="timeout"><script type="text/javascript">IdleTimer();</script></div>
+  <div id="test"></div>
+  <script type="text/javascript">displaycheckinouthistory();</script>
+</body>
+</html>

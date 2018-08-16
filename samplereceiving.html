@@ -1,0 +1,114 @@
+<html>
+<head>
+  <title>Internal Chain Custody Form</title>
+  <script type="text/javascript" src="/javascript/resourcejquery.min.js"></script>
+  <script type="text/javascript" src="/javascript/resourcejquery.cookie.js"></script>
+  <script type="text/javascript" src="/javascript/custodyjavascript.js"></script>
+  <style>
+    input[type="text"][name="ambientlocation"]{font-size:18px;font-weight:bold;}
+    input[type="text"][name="coldlocation"]{font-size:18px;font-weight:bold}
+  </style>
+</head>
+
+<body>
+  <h1><img src="\pictures\puritylabs2.jpg">&nbsp;&nbsp;
+  Test Sample Internal Chain of Custody Form
+  </h1>
+
+  <div name="div1" id="sample_receiving">
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;<b><u>Sample Receiving</u></b></p>
+    <form class="sample_receiving_form" name="form1" method="POST">
+      <p name="p1">
+        <label>Date:</label><input type="text" id="sample_receiving_date">&emsp;&emsp;
+        <label>Case Number:</label><input type="text" id="casenumber">&emsp;&emsp;
+        <label>Initials:<span id=staffinitial></span><script type="text/javascript">getlistupfront('staffinitial')</script></label>
+      </p>
+      <p name="p2">
+        <label>Customer:</label><span id="customer"></span>&emsp;&emsp;
+        <script type="text/javascript">getlistupfront('customer');</script>
+        <label>Multiple Sample Per Case?</label>
+        <input type="radio" name="multi_sample" value="yes">Yes
+        <input type="radio" name="multi_sample" value="no" checked>No
+      </p>
+      <p name="p3"><label>Description:</label><input type="text" id="description">&emsp;<label>Lot Number:</label><input type="text" id="lotnumber"></p>
+      <p name="p4">
+        <label>Sample Delivery Method:</label>
+        <input type="radio" name="deliverymethod" value="Walkin_Courier" checked>Walk-in/Courier&emsp;
+        <input type="radio" name="deliverymethod" value="Dropbox">Drop-Box&emsp;
+        <input type="radio" name="deliverymethod" value="UPS">UPS&emsp;
+        <input type="radio" name="deliverymethod" value="FedEx">FedEx&emsp;
+        <input type="radio" name="deliverymethod" value="USPS">USPS
+      </p>
+      <p name=p5>
+        <label>Sample Condition:</label>
+        <input type="radio" name="received_condition" value="Acceptable" checked>Acceptable&emsp;
+        <input type="radio" name="received_condition" value="Broken">Broken&emsp;
+        <input type="radio" name="received_condition" value="Leaking">Leaking
+      </p>
+      <p name="p6">
+        <label>Storage Condition:</label>
+        <input type="radio" name="storagecondition" value="Ambient" checked>Ambient&emsp;
+        <input type="radio" name="storagecondition" value="Frozen">Frozen&emsp;
+        <input type="radio" name="storagecondition" value="Cold">Cold&emsp;
+        <input type="radio" name="storagecondition" value="Other">Other:
+        <input type="text" name="storageconditionother" value="None">
+      </p>
+      <p name="p7"><label>Sample Notes:</label><input type="text" name="notes" value="None"></p>
+      <p name="p8">
+        <label>Special Instances*:</label>
+        <input type="checkbox" name="specialinstance" value="potability">Potability&emsp;
+        <input type="checkbox" name="specialinstance" value="shelflife">Shelf Life/Stability&emsp;
+        <input type="checkbox" name="specialinstance" value="swabs">Swabs/Sponges&emsp;
+        <input type="checkbox" name="specialinstance" value="nwpet">NW Pet&emsp;
+        <input type="checkbox" name="specialinstance" value="wastewater">Waste Water&emsp;
+        <p>*- For these special instances, the department personnel are responsible for sample control and disposal.</p>
+      </p>
+      <p name="p9">
+        <label>Departments for testings:</label>
+        <input type="checkbox" name="testdepartment" value="microbiology">Microbiology
+        <input type="checkbox" name="testdepartment" value="chemistry">Chemistry
+        <input type="checkbox" name="testdepartment" value="metals">Metals
+        <input type="checkbox" name="testdepartment" value="labelclaim">Label Claim
+        <input type="checkbox" name="testdepartment" value="allergens">Allergens
+        <input type="checkbox" name="testdepartment" value="pesticides">Pesticides
+      </p>
+      <p name="p10">
+        Test samples delivered to:
+        <input type="checkbox" name="deliveredto" value="microbiology">Microbiology
+        <input type="checkbox" name="deliveredto" value="chemistry">Chemistry
+        <input type="checkbox" name="deliveredto" value="metals">Metals
+        <input type="checkbox" name="deliveredto" value="labelclaim">Label Claim
+        <input type="checkbox" name="deliveredto" value="allergens">Allergens
+        <input type="checkbox" name="deliveredto" value="pesticides">Pesticides
+        <input type="checkbox" name="deliveredto" value="storage">Storage
+        <input type="checkbox" name="deliveredto" value="other">Other:
+        <input type="text" name="deliveredtoother" value="None">
+      </p>
+      <p><input type="button" name="button1" value="Submit" onClick="submittodbtest();">&emsp;<span id="message"></span></p>
+      <p><input type="reset" name="reset" value="Reset the form" onClick='document.getElementById("message").innerHTML=""'></p>
+      <input type="hidden" name="defaultstorage" value='NA'>
+    </form>
+  </div>
+
+  <script type="text/javascript">dateoftoday()</script>
+
+  <hr style="height:6px;border:none;color:#333;background-color:#333;" />
+  <div name="div2" id="samle_storage_dispersion" style="font-size:18px;">
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;<b><u>Sample Storage and Dispersion</u></b></p>
+    <div name="div21" id="storage_location">
+      <label>Storage Location:</label>
+      <input type="radio" name="storage_ambient" value="ambient" />Ambient;
+      <label>Location: </label><input type="text" style="width:48px" name="ambientlocation" value="" />
+      <input type="radio" name="cold" value="cold" />Cold;
+      <label>Location: </label><input type="text" style="width:48px" name="coldlocation" value="" style="font-size:16px;font-weight:bold;"/>
+      <label>Initial: </label><input type="text" style="width:48px" name="storagelocationinitial" value=""/>
+      <p style="font-size:15px"><b>Note: </b>Test sample(s) must be returned to the Storage Location upon return.</p>
+    </div>
+  </div>
+
+
+  <hr style="height:6px;border:none;color:#333;background-color:#333;" />
+  <div name="div3" id="sample_disposition">
+  </div>
+</body>
+</html>
