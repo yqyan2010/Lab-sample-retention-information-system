@@ -1,7 +1,5 @@
-# Lab-sample-retention-information-system
-Contains front end for user interaction/input and back end for sample database manage.
-
-Purpose: It tracks all sample information in a MySQL type database and allows users to enter/edit/view these information in a website format user interface.
+# Sample-retention-information-system
+Purpose: It allows users to enter/edit/view these information in a website format user interface.
 
 It contains following parts:
 
