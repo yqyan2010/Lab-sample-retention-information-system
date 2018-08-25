@@ -3,7 +3,8 @@
   <title>Sample Storage Check In/Out</title>
   <script type="text/javascript" src="/javascript/resourcejquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="/javascript/resourcejquery-ui.min.js"></script>
-  <script type="text/javascript" src="/javascript/custodyjavascript.js"></script>
+  <script type="text/javascript" src="/javascript/intchaincustody/custodyjavascript.js"></script>
+  <script type="text/javascript" src="/javascript/intchaincustody/samplestorage.js"></script>
   <style>
     input[type="button"][name="button_logout"]{font-size:17px;}
     input[type="text"][name="coldlocation"]{font-size:18px;font-weight:bold}
@@ -113,18 +114,11 @@
         <span id="checkoutmsg"></span>
       </form>
     </p>
-    <p name="p_table">
-      <span id="checkouttable"></span>
-      <span id="checkintable"></span>
-      <script type="text/javascript">getcheckinouttable();</script>
-    </p>
     <div id="checkinouthistory"><script type="text/javascript">displaytable();</script></div>
   </div>
 
   <hr style="height:6px;border:none;color:#333;background-color:#333;" />
   <div id="sample_disposition"></div>
   <div id="timeout"><script type="text/javascript">IdleTimer();</script></div>
-  <div id="test"></div>
-  <script type="text/javascript">displaycheckinouthistory();</script>
 </body>
 </html>
