@@ -3,7 +3,8 @@
   <title>Sample Storage Check In/Out</title>
   <script type="text/javascript" src="/javascript/resourcejquery-1.11.1.min.js"></script>
   <script type="text/javascript" src="/javascript/resourcejquery-ui.min.js"></script>
-  <script type="text/javascript" src="/javascript/custodyjavascript.js"></script>
+  <script type="text/javascript" src="/javascript/intchaincustody/custodyjavascript.js"></script>
+  <script type="text/javascript" src="/javascript/intchaincustody/samplestorage.js"></script>
   <style>
     input[type="button"][name="button_logout"]{font-size:17px;}
     input[type="text"][name="coldlocation"]{font-size:18px;font-weight:bold}
@@ -99,32 +100,30 @@
       <label>Location: </label><input type="text" style="width:48px" id="ambientlocation" value="" />
       <input type="radio" id="storagecold" value="cold" />Cold;
       <label>Location: </label><input type="text" style="width:48px" id="coldlocation" value="" style="font-size:16px;font-weight:bold;"/>
-      <label>Initial: </label><input type="text" style="width:48px" id="storagelocationinitial" value=""/>
+      <label>Initial: </labels><input type="text" style="width:48px" id="storagelocationinitial" value=""/>
     </p>
-    <p style="font-size:15px">
-      <b>Note: </b>Test sample(s) must be returned to the Storage Location upon return.
-    </p>
+    <div id="setstorage" style="display:none">
+      <label><font color='red'>Storage does not exist, please set a storage location.</font></label>
+      <input type="text" id="storagelocation" name="storagelocation" value="" />
+      <input type="button" name="buttonstorage" value="Set Storage" onClick="setstorage()" />
+      <div id="resultstorage"></div>
+    </div>
+    <div id="showsetstorage"></div>
     <p name="p_checkinout">
       <form id="form_checkinout" name="form_checkinout">
-        <input type="button" name="button_checkin" value="Check In" onClick="checkin();" style="font-size:15px;width:100px;height:25px;">
-        <input type="button" name="button_checkout" value="Check Out" onClick="checkout();" style="font-size:15px;width:100;height:25px;">
-        <input type="button" name="button_dispose" value="Dispose" onclick="" style="font-size:15px;width:100;height:25px;">
+        <input type="button" name="button_checkin" value="Check In" onClick="checkin();" style="font-size:27px;width:150px;height:32px;">&emsp;&emsp;
+        <input type="button" name="button_checkout" value="Check Out" onClick="checkout();" style="font-size:27px;width:150px;height:32px;">
         <span id="checkinmsg"></span>
         <span id="checkoutmsg"></span>
       </form>
-    </p>
-    <p name="p_table">
-      <span id="checkouttable"></span>
-      <span id="checkintable"></span>
-      <script type="text/javascript">getcheckinouttable();</script>
     </p>
     <div id="checkinouthistory"><script type="text/javascript">displaytable();</script></div>
   </div>
 
   <hr style="height:6px;border:none;color:#333;background-color:#333;" />
-  <div id="sample_disposition"></div>
+  <div id="sample_disposition">
+    <input type="button" name="button_dispose" value="Dispose" onclick="" style="font-size:27px;width:150px;height:32px;">
+  </div>
   <div id="timeout"><script type="text/javascript">IdleTimer();</script></div>
-  <div id="test"></div>
-  <script type="text/javascript">displaycheckinouthistory();</script>
 </body>
 </html>

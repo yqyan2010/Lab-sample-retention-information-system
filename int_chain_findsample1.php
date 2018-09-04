@@ -3,7 +3,7 @@
 $resultsarray=array();
 $pdo = new pdo('mysql:host=localhost;port=3306;dbname=sample_int_chain_custody','mysql','mysql');
 $casenumber=$_POST['casenumber'];
-//$casenumber="1701276";
+//$casenumber="1701395";
 $sql_select = "SELECT samplereceiving.sample_case,samplereceiving.received_date,samplereceiving.sample_description,samplereceiving.lotnumber,samplereceiving.notes,staffinitials.staff_initial,customer.customer,storage.storage_location,storageconditions.storage_conditions
 FROM samplereceiving
 INNER JOIN staffinitials ON samplereceiving.received_initial_id=staffinitials.staffinitials_id
