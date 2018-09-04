@@ -57,11 +57,38 @@ function findsample() {
       }
     })
   },'json');
+  $.post('int_chain_findsample4.php',object,function(data) {
+    $('#showsetstorage').empty().append(data);
+  });
   displaytable();
   displaycheckouthistory(casenumber);
   displaycheckinhistory(casenumber);
 } catch (err) {
   document.getElementById('findsample_notice').innerHTML = err.message;
+  }
+}
+
+//--- Set storage location ------
+function setstorage() {
+  var casenumber=document.getElementById('casenumber').value;
+  var loginstaffinitial=localStorage.getItem('staffinitial');
+  var storage = document.getElementById('storagelocation').value;
+  if (storage == null || storage == '') {
+    alert('Set a storage location.');
+  }
+  else {
+    object={casenumber:casenumber,
+            loginstaffinitial:loginstaffinitial,
+            storage:storage};
+    //$('#resultstorage').load('int_chain_setstorage.php');
+    $.ajax({
+      type:'POST',
+      url:'int_chain_setstorage.php',
+      data:object,
+      success:function(data){
+        $('#showsetstorage').empty().append(data);
+      }
+    });
   }
 }
 //--- Do check in and check out--------
@@ -96,6 +123,7 @@ function checkout() {
       alert("Error.");
   });
 }
+
 // Get the check in and out history and display them
 function displaytable(){
   //Create header objects -- keys are header id
