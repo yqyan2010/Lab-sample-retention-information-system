@@ -4,9 +4,9 @@
 
 //--- Find sample information ------
 function remove(value) {
-  var inputtextid=["received_date","casenumber","staff_initial","customer","sample_description","lotnumber","notes","ambientlocation","coldlocation","storagelocationinitial"];
+  var inputtextid=["received_date","casenumber","staff_initial","customer","sample_description","lotnumber","notes","ambientlocation","coldlocation","storagelocationinitial","dispodate","dispoby"];
   var inputradioid=["yes","no","Walkin_Courier","Dropbox","UPS","FedEx","USPS","Acceptable","Broken","Leaking","Ambient","Frozen","Cold","storageambient","storagecold"];
-  var inputcheckboxid=["Potability","Shelflife","Swab","NWpet","Wastewater","t_microbiology","t_chemistry","t_metals","t_labelclaim","t_allergens","t_pesticides","d_microbiology","d_chemistry","d_metals","d_labelclaim","d_allergens","d_pesticides","d_storage","d_other"];
+  var inputcheckboxid=["Potability","Shelflife","Swab","NWpet","wastewater","t_microbiology","t_chemistry","t_metals","t_labelclaim","t_allergens","t_pesticides","d_microbiology","d_chemistry","d_metals","d_labelclaim","d_allergens","d_pesticides","d_storage","d_other"];
   if (value="all") {
     for (i=0;i<inputtextid.length;i++) {
       document.getElementById(inputtextid[i]).value="";
@@ -31,6 +31,26 @@ function remove(value) {
   else {
     console.log("Can't run remove function, values entered not valid.");
   }
+}
+
+function ifdisposed (val) {
+  $('#findsample_notice').html("");
+  document.getElementById('disposemsg').innerHTML="";
+  //document.getElementById('button_dispo').onclick=null;
+  object={casenumber:val};
+  $.post('int_chain_isdispose.php',object,function(data) {
+    $('#findsample_notice').html(data);
+    if (data=='disposed') {
+      document.getElementById('button_checkin').onclick=null;
+      document.getElementById('button_checkout').onclick=null;
+      document.getElementById('button_dispo').onclick=null;
+    }
+    else {
+      document.getElementById('button_checkin').onclick=checkin;
+      document.getElementById('button_checkout').onclick=checkout;
+      document.getElementById('button_dispo').onclick=dispose;
+    }
+  });
 }
 
 function findsample() {
@@ -92,7 +112,7 @@ function setstorage() {
   }
 }
 //--- Do check in and check out--------
-function checkin() {
+var checkin=function() {
     window.console && console.log('Checking in')
     var casenumber=document.getElementById('casenumber').value;
     var loginstaffinitial=localStorage.getItem('staffinitial');
@@ -108,7 +128,7 @@ function checkin() {
   });
 }
 
-function checkout() {
+var checkout=function() {
     window.console && console.log('Checking out')
     var casenumber=document.getElementById('casenumber').value;
     var loginstaffinitial=localStorage.getItem('staffinitial');
@@ -244,4 +264,18 @@ function displaycheckinhistory(val){
   } catch (err) {
     document.getElementById('findsample_notice').innerHTML = err.message;
   };
+}
+
+var dispose=function (){
+  var casenumber=document.getElementById('casenumber').value;
+  var loginstaffinitial=localStorage.getItem('staffinitial');
+  var object={casenumber:casenumber,loginstaffinitial:loginstaffinitial}
+  $.post('int_chain_dispose.php',object,function(data){
+    /// what to do with data upon success
+    document.getElementById('disposemsg').innerHTML=data;
+  });
+}
+
+var test=function(){
+  document.getElementById('disposemsg').innerHTML="test dispose enabled."
 }
