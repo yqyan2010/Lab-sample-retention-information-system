@@ -3,7 +3,7 @@
 $item=array();
 $pdo = new pdo('mysql:host=localhost;port=3306;dbname=sample_int_chain_custody','mysql','mysql');
 $casenumber=$_POST['casenumber'];
-//$casenumber="1701375";
+//$casenumber="1701399";
 $sql_select = "SELECT departments_testing,departments_deliveredto,special_instance
 FROM samplereceiving
 WHERE samplereceiving.sample_case='".$casenumber."'";

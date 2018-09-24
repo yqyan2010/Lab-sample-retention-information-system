@@ -24,8 +24,8 @@
       <p name="p1">
       <form name="form_entercasetofindsample" method="POST">
         <label>Date:</label><input type="text" id="received_date" style="width:80px">&emsp;
-        <label>Case Number:</label><input type="text" id="casenumber" style="width:180px">&emsp;
-        <input type="button" name="button_findsample" value="Find Sample" onClick="findsample();">&emsp;<span id="findsample_notice"></span>
+        <label>Case Number:</label><input type="text" id="casenumber" name="casenumber" value="" onChange="ifdisposed(this.value);" style="width:180px">&emsp;
+        <input type="button" name="button_findsample" value="Find Sample" onClick="findsample();">&emsp;<font color='blue'><span id="findsample_notice"></span></font>
         <label>Initials:</label><input type="text" id="staff_initial" style="width:60px">
       </form>
       </p>
@@ -65,7 +65,7 @@
         <input type="checkbox" name="specialinstance" id='Shelflife' value="shelflife">Shelf Life/Stability&emsp;
         <input type="checkbox" name="specialinstance" id='Swab' value="swabs">Swabs/Sponges&emsp;
         <input type="checkbox" name="specialinstance" id='NWpet' value="nwpet">NW Pet&emsp;
-        <input type="checkbox" name="specialinstance" id='Wastewater' value="wastewater">Waste Water&emsp;
+        <input type="checkbox" name="specialinstance" id='wastewater' value="wastewater">Waste Water&emsp;
         <p>*- For these special instances, the department personnel are responsible for sample control and disposal.</p>
       </p>
       <p name="p9">
@@ -111,8 +111,8 @@
     <div id="showsetstorage"></div>
     <p name="p_checkinout">
       <form id="form_checkinout" name="form_checkinout">
-        <input type="button" name="button_checkin" value="Check In" onClick="checkin();" style="font-size:27px;width:150px;height:32px;">&emsp;&emsp;
-        <input type="button" name="button_checkout" value="Check Out" onClick="checkout();" style="font-size:27px;width:150px;height:32px;">
+        <input type="button" name="button_checkin" id="button_checkin" value="Check In" onclick="checkin();" style="font-size:27px;width:150px;height:32px;">&emsp;&emsp;
+        <input type="button" name="button_checkout" id="button_checkout" value="Check Out" onclick="checkout();" style="font-size:27px;width:150px;height:32px;">
         <span id="checkinmsg"></span>
         <span id="checkoutmsg"></span>
       </form>
@@ -121,9 +121,23 @@
   </div>
 
   <hr style="height:6px;border:none;color:#333;background-color:#333;" />
-  <div id="sample_disposition">
-    <input type="button" name="button_dispose" value="Dispose" onclick="" style="font-size:27px;width:150px;height:32px;">
+  <div name="div3" id="sample_disposition">
+    <p>&emsp;&emsp;&emsp;&emsp;&emsp;<b><u>Sample Disposition</u></b></p>
+    <form id="form_dispo" name="form_dispo">
+      <div name="complete">
+        <label>Completed Date: </label><input type="text" id="completedate" value="">
+        <label>Completed Notes: </label><input type="text" id="completenote" value="">
+      </div>
+      <p></p>
+      <div name="dispo">
+        <input type="button" name="button_dispo" id="button_dispo" value="Dispose" onclick="dispose();" style="font-size:27px;width:150px;height:32px;">
+        <label>Diposed Date: </label><input type="text" id="dispodate" value="">
+        <label>Disposed By: </label><input type="text" id="dispoby" value="">
+      </div>
+      <div id="disposemsg"></div>
+    </form>
   </div>
+
   <div id="timeout"><script type="text/javascript">IdleTimer();</script></div>
 </body>
 </html>
