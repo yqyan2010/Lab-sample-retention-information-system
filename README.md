@@ -15,9 +15,15 @@ HTML files:
   3) samplereceiving.html -- used to enter sample information (name, lot number, storage, test) upon receiving the sample
 
 JS files:
-  1) custodyjavascript.js -- self-wrritten js functions called from html files
+  1) custodyjavascript.js -- functions used across all html files
   
-  2) resourcejquery.min.js -- jquery code borrowed from the generous jquery community
+  2) login.js -- function used in the login.html page
+  
+  3) samplereceiving.js -- function used in samplereceiving.html
+  
+  4) samplestorage.js -- function used in samplestorage.html
+  
+  5) resourcejquery.min.js -- jquery code borrowed from the generous jquery community
 
 PHP files:
   1) All php files that are called in js functions to perform back-end database related calculations (next step: working on getcheckout.php and merge all php files into one php because each php files is like a php function)
