@@ -1,10 +1,10 @@
 # Sample-retention-information-system
-Purpose: It allows users to enter/edit/view sample information in a interactive user interface (i.e. website) while all sample information and user operation history is saved/processed/calculated via front-end and back-end codes.
+Purpose: It allows users to enter/edit/view sample information on a website (web is considered an interactive user interface.)
 
 Applications:
-1) Enter sample information upon receiving
-2) Check in and check out sample from retention
-3) Track sample chain of custody history
+1) Enter sample information upon receiving -- samplereceiving.html
+2) Check in and check out sample from retention -- samplestorage.html
+3) Track sample chain of custody history -- through samplestorage.html
 
 Languages used:
 HTML, JavaScript (JQuery), PHP, MySQL database
